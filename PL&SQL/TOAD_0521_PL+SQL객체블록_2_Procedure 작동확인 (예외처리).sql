@@ -1,0 +1,1 @@
+exec proc_exception1('test');

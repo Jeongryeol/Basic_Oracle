@@ -1,75 +1,75 @@
-1. 'TEMP Å×ÀÌºí¿¡¼­ Ãë¹Ì°¡ NULLÀÌ ¾Æ´Ñ »ç¶÷ÀÇ ¼º¸íÀ» ÀÐ¾î¿À½Ã¿À.'
+1. 'TEMP í…Œì´ë¸”ì—ì„œ ì·¨ë¯¸ê°€ NULLì´ ì•„ë‹Œ ì‚¬ëžŒì˜ ì„±ëª…ì„ ì½ì–´ì˜¤ì‹œì˜¤.'
 
-SELECT emp_name "¼º¸í", hobby "Ãë¹Ì"
+SELECT emp_name "ì„±ëª…", hobby "ì·¨ë¯¸"
   FROM temp
  WHERE hobby IS NOT NULL
  ORDER BY emp_name
  
 
  
-2. 'TEMPÀÇ ÀÚ·á Áß HOBBYÀÇ °ªÀÌ NULLÀÎ »ç¿øÀ» 'µî»ê'À¸·Î Ä¡È¯ÇßÀ»¶§
-    HOBBY°¡ 'µî»ê'ÀÎ »ç¶÷ÀÇ ¼º¸íÀ» °¡Á®¿À´Â ¹®ÀåÀ» ÀÛ¼ºÇÏ½Ã¿À.'
+2. 'TEMPì˜ ìžë£Œ ì¤‘ HOBBYì˜ ê°’ì´ NULLì¸ ì‚¬ì›ì„ 'ë“±ì‚°'ìœ¼ë¡œ ì¹˜í™˜í–ˆì„ë•Œ
+    HOBBYê°€ 'ë“±ì‚°'ì¸ ì‚¬ëžŒì˜ ì„±ëª…ì„ ê°€ì ¸ì˜¤ëŠ” ë¬¸ìž¥ì„ ìž‘ì„±í•˜ì‹œì˜¤.'
  
-SELECT ¼º¸í,Ãë¹Ì
-  FROM (SELECT emp_name AS "¼º¸í"
-       ,NVL(hobby,'µî»ê') AS "Ãë¹Ì" FROM TEMP)
-  WHERE Ãë¹Ì = 'µî»ê'
+SELECT ì„±ëª…,ì·¨ë¯¸
+  FROM (SELECT emp_name AS "ì„±ëª…"
+       ,NVL(hobby,'ë“±ì‚°') AS "ì·¨ë¯¸" FROM TEMP)
+  WHERE ì·¨ë¯¸ = 'ë“±ì‚°'
 
 
 
-3. 'SMITH°¡ ±Ù¹«ÇÏ´Â ºÎ¼­¿Í °°Àº ºÎ¼­¿¡ ±Ù¹«ÇÏ´Â »ç¿øµéÀÇ ÀÌ¸§°ú ÀÔ»çÀÏÀÚ¸¦ Ãâ·ÂÇÏ½Ã¿À'
+3. 'SMITHê°€ ê·¼ë¬´í•˜ëŠ” ë¶€ì„œì™€ ê°™ì€ ë¶€ì„œì— ê·¼ë¬´í•˜ëŠ” ì‚¬ì›ë“¤ì˜ ì´ë¦„ê³¼ ìž…ì‚¬ì¼ìžë¥¼ ì¶œë ¥í•˜ì‹œì˜¤'
 
-SELECT e.ename "ÀÌ¸§", e.hiredate "ÀÔ»çÀÏÀÚ", d.dname "±Ù¹«ºÎ¼­"
+SELECT e.ename "ì´ë¦„", e.hiredate "ìž…ì‚¬ì¼ìž", d.dname "ê·¼ë¬´ë¶€ì„œ"
   FROM emp e, dept d
  WHERE e.deptno = d.deptno
    AND e.deptno = (SELECT deptno FROM emp WHERE ename = 'ALLEN')
    
 
 
-4. 'ÀÔ»ç³âµµ°¡ 1982³âµµÀÎ »ç¿øµéÀÇ »ç¹ø°ú ÀÌ¸§À» Ãâ·ÂÇÏ½Ã¿À.'
+4. 'ìž…ì‚¬ë…„ë„ê°€ 1982ë…„ë„ì¸ ì‚¬ì›ë“¤ì˜ ì‚¬ë²ˆê³¼ ì´ë¦„ì„ ì¶œë ¥í•˜ì‹œì˜¤.'
 
-SELECT empno "»ç¹ø", ename "ÀÌ¸§", TO_CHAR(hiredate,'YYYY') "ÀÔ»ç³âµµ" FROM emp
+SELECT empno "ì‚¬ë²ˆ", ename "ì´ë¦„", TO_CHAR(hiredate,'YYYY') "ìž…ì‚¬ë…„ë„" FROM emp
 WHERE TO_CHAR(hiredate,'YYYY') = 1982 
 
 
 
-5. '¿ì¸®È¸»ç¿¡¼­ ±Ù¹«ÇÏ´Â »ç¶÷µé Áß¿¡ ±Þ¿©°¡ 2000ºÒ ÀÌ»óÀÎ »ç¿øµéÀÇ ±Þ¿©ÀÇ Æò±ÕÀ» ±¸ÇÏ½Ã¿À. (¼Ò¼ö 3ÀÚ¸®¿¡¼­ ¹Ý¿Ã¸²ÇÏ½Ã¿À.)'
+5. 'ìš°ë¦¬íšŒì‚¬ì—ì„œ ê·¼ë¬´í•˜ëŠ” ì‚¬ëžŒë“¤ ì¤‘ì— ê¸‰ì—¬ê°€ 2000ë¶ˆ ì´ìƒì¸ ì‚¬ì›ë“¤ì˜ ê¸‰ì—¬ì˜ í‰ê· ì„ êµ¬í•˜ì‹œì˜¤. (ì†Œìˆ˜ 3ìžë¦¬ì—ì„œ ë°˜ì˜¬ë¦¼í•˜ì‹œì˜¤.)'
 
-SELECT '$'||TO_CHAR(ROUND(AVG(sal),2),'9,999.99') "2000ºÒ ÀÌ»óÀÇ Æò±Õ±Þ¿©" FROM emp WHERE sal>= 2000
+SELECT '$'||TO_CHAR(ROUND(AVG(sal),2),'9,999.99') "2000ë¶ˆ ì´ìƒì˜ í‰ê· ê¸‰ì—¬" FROM emp WHERE sal>= 2000
 
 
 
-6. 'SQL¹®ÀÌ Ã³¸®µÇ´Â °úÁ¤ 4´Ü°è¿¡ ´ëÇØ ¼³¸íÇÏ½Ã¿À.'
-    1) ½ÇÇà°èÈ¹¼ö¸³ (15°¡Áö ±ÔÄ¢±â¹Ý ÀÚµ¿°èÈ¹ - rule base / ÀÏ¾ç¿¡ µû¸¥ cost base )
-    2) TABLE °ü°èÁ¤¸®
-    3) ¿ÉÆ¼¸¶ÀÌÀú ½ÇÇà°èÈ¹¼ö·É
-    4) ÆäÄ¡(½ÇÁ¦TABLEÁ¢¼Ó)ÈÄ µ¥ÀÌÅÍ Á¶È¸
+6. 'SQLë¬¸ì´ ì²˜ë¦¬ë˜ëŠ” ê³¼ì • 4ë‹¨ê³„ì— ëŒ€í•´ ì„¤ëª…í•˜ì‹œì˜¤.'
+    1) ì‹¤í–‰ê³„íšìˆ˜ë¦½ (15ê°€ì§€ ê·œì¹™ê¸°ë°˜ ìžë™ê³„íš - rule base / ì¼ì–‘ì— ë”°ë¥¸ cost base )
+    2) TABLE ê´€ê³„ì •ë¦¬
+    3) ì˜µí‹°ë§ˆì´ì € ì‹¤í–‰ê³„íšìˆ˜ë ¹
+    4) íŽ˜ì¹˜(ì‹¤ì œTABLEì ‘ì†)í›„ ë°ì´í„° ì¡°íšŒ
      
     
 
-7. 'º¸À¯ÇÏ°í ÀÖ´Â Æ÷ÀÎÆ®·Î °úÀÏ¹Ù±¸´Ï¸¦ ¹ÞÀ» ¼ö ÀÖ´Â »ç¶÷µéÀÇ ¸í´Ü°ú º¸À¯Æ÷ÀÎÆ®, »óÇ°Æ÷ÀÎÆ®¸¦ Ãâ·ÂÇÏ½Ã¿À.'
+7. 'ë³´ìœ í•˜ê³  ìžˆëŠ” í¬ì¸íŠ¸ë¡œ ê³¼ì¼ë°”êµ¬ë‹ˆë¥¼ ë°›ì„ ìˆ˜ ìžˆëŠ” ì‚¬ëžŒë“¤ì˜ ëª…ë‹¨ê³¼ ë³´ìœ í¬ì¸íŠ¸, ìƒí’ˆí¬ì¸íŠ¸ë¥¼ ì¶œë ¥í•˜ì‹œì˜¤.'
 
-SELECT mem.name_vc "°í°´¸í", mem.point_nu "º¸À¯Æ÷ÀÎÆ®" , poi.name_vc "»óÇ°¸í", poi.point_nu "¼Ò¿äÆ÷ÀÎÆ®"
+SELECT mem.name_vc "ê³ ê°ëª…", mem.point_nu "ë³´ìœ í¬ì¸íŠ¸" , poi.name_vc "ìƒí’ˆëª…", poi.point_nu "ì†Œìš”í¬ì¸íŠ¸"
   FROM t_giftmem mem, t_giftpoint poi
- WHERE poi.name_vc = '°úÀÏ¹Ù±¸´Ï'
-   AND mem.point_nu >= (SELECT point_nu FROM t_giftpoint WHERE name_vc = '°úÀÏ¹Ù±¸´Ï')
+ WHERE poi.name_vc = 'ê³¼ì¼ë°”êµ¬ë‹ˆ'
+   AND mem.point_nu >= (SELECT point_nu FROM t_giftpoint WHERE name_vc = 'ê³¼ì¼ë°”êµ¬ë‹ˆ')
  ORDER BY mem.name_vc, poi.point_nu
 
 
 
 
-8. 'ALLENÀÌ ±Ù¹«ÇÏ´À ¤¤ºÎ¼­¸íÀ» Ãâ·ÂÇÏ´Â SQL¹®À» ÀÛ¼ºÇÏ½Ã¿À'
+8. 'ALLENì´ ê·¼ë¬´í•˜ëŠ” ë¶€ì„œëª…ì„ ì¶œë ¥í•˜ëŠ” SQLë¬¸ì„ ìž‘ì„±í•˜ì‹œì˜¤'
 
-SELECT emp.ename "¼º¸í", dept.dname "ºÎ¼­¸í"
+SELECT emp.ename "ì„±ëª…", dept.dname "ë¶€ì„œëª…"
   FROM emp, dept
  WHERE emp.deptno = dept.deptno
    AND emp.ename = 'ALLEN'
    
 
 
-9. 'ºÎ¼­º° ±Þ¿© Æò±ÕÀ» ±¸ÇÏ°í ±Þ¿© Æò±ÕÀÌ 2000ºÒ ÀÌ»óÀÎ ºÎ¼­ÀÇ ºÎ¼­¹øÈ£¸¦ Ãâ·ÂÇÏ½Ã¿À.'
+9. 'ë¶€ì„œë³„ ê¸‰ì—¬ í‰ê· ì„ êµ¬í•˜ê³  ê¸‰ì—¬ í‰ê· ì´ 2000ë¶ˆ ì´ìƒì¸ ë¶€ì„œì˜ ë¶€ì„œë²ˆí˜¸ë¥¼ ì¶œë ¥í•˜ì‹œì˜¤.'
 
-SELECT dept.dname "ºÎ¼­¸í", '$'||TO_CHAR(ROUND(AVG(emp.sal),2),'99,999.99') "Æò±Õ±Þ¿©"
+SELECT dept.dname "ë¶€ì„œëª…", '$'||TO_CHAR(ROUND(AVG(emp.sal),2),'99,999.99') "í‰ê· ê¸‰ì—¬"
   FROM emp, dept
  WHERE emp.deptno = dept.deptno
  GROUP BY dept.dname
@@ -77,26 +77,26 @@ SELECT dept.dname "ºÎ¼­¸í", '$'||TO_CHAR(ROUND(AVG(emp.sal),2),'99,999.99') "Æò±
  
 
 
-10. 'JOBÀÌ MANAGER »ç¿øµéÀÇ ±Þ¿©ÀÇ ÇÕ, JOBÀÌ ANALYSTÀÎ »ç¿øµéÀÇ ±Þ¿©ÀÇ ÇÕ, ±×¸®°í ³ª¸ÓÁö´Â ±âÅ¸»ç¿øµéÀÇ ±Þ¿©ÀÇ ÇÕÀ» ±¸ÇÏ½Ã¿À.' 
+10. 'JOBì´ MANAGER ì‚¬ì›ë“¤ì˜ ê¸‰ì—¬ì˜ í•©, JOBì´ ANALYSTì¸ ì‚¬ì›ë“¤ì˜ ê¸‰ì—¬ì˜ í•©, ê·¸ë¦¬ê³  ë‚˜ë¨¸ì§€ëŠ” ê¸°íƒ€ì‚¬ì›ë“¤ì˜ ê¸‰ì—¬ì˜ í•©ì„ êµ¬í•˜ì‹œì˜¤.' 
  
-SELECT DECODE(job,'MANAGER',job,'ANALYST',job,'±âÅ¸') "JOB"
-      ,'$'||TO_CHAR(SUM(sal),'999,999') "±Þ¿©ÇÕ°è"
+SELECT DECODE(job,'MANAGER',job,'ANALYST',job,'ê¸°íƒ€') "JOB"
+      ,'$'||TO_CHAR(SUM(sal),'999,999') "ê¸‰ì—¬í•©ê³„"
   FROM emp
- GROUP BY DECODE(job,'MANAGER',job,'ANALYST',job,'±âÅ¸')
- ORDER BY DECODE(job,'MANAGER',job,'ANALYST',job,'±âÅ¸')
+ GROUP BY DECODE(job,'MANAGER',job,'ANALYST',job,'ê¸°íƒ€')
+ ORDER BY DECODE(job,'MANAGER',job,'ANALYST',job,'ê¸°íƒ€')
  
  
  
-11. 'lec_timeÀÌ Å©¸é ½ÇÇè°ú¸ñ, lec_point°¡ Å©¸é ±âÅ¸°ú¸ð±× µÑÀÌ °°À¸¸é ÀÏ¹Ý°ú¸ñÀ¸·Î °ªÀ» µ¹·Á¹Þ°íÀÚÇÑ´Ù. ¾î¶»°Ô ÇØ¾ßÇÏ´Â°¡?'
+11. 'lec_timeì´ í¬ë©´ ì‹¤í—˜ê³¼ëª©, lec_pointê°€ í¬ë©´ ê¸°íƒ€ê³¼ëª©, ë‘˜ì´ ê°™ìœ¼ë©´ ì¼ë°˜ê³¼ëª©ìœ¼ë¡œ ê°’ì„ ëŒë ¤ë°›ê³ ìž í•œë‹¤. ì–´ë–»ê²Œ í•´ì•¼í•˜ëŠ”ê°€?'
 
-SELECT a.lec_id "No", DECODE(SIGN(a.lec_time - b.lec_point),1,'½ÇÇè°ú¸ñ',-1,'±âÅ¸°ú¸ñ',0,'ÀÏ¹Ý°ú¸ñ') "ºÐ·ù"
+SELECT a.lec_id "No", DECODE(SIGN(a.lec_time - b.lec_point),1,'ì‹¤í—˜ê³¼ëª©',-1,'ê¸°íƒ€ê³¼ëª©',0,'ì¼ë°˜ê³¼ëª©') "ë¶„ë¥˜"
   FROM (SELECT rownum rno, lec_id, lec_time FROM lecture) a
       , (SELECT rownum rno, lec_point FROM lecture) b
  WHERE a.rno = b.rno
  
  
  
-12. ´ÙÀ½À» DECODE±¸¹®À¸·Î Ç¥ÇöÇØº¸½Ã¿À
+12. ë‹¤ìŒì„ DECODEêµ¬ë¬¸ìœ¼ë¡œ í‘œí˜„í•´ë³´ì‹œì˜¤
  
 IF A = B THEN
     IF C = D THEN
@@ -110,5 +110,5 @@ END IF;
 
 DECODE(A-B,0,DECODE(C-D,0,'T','F'),'F')
 
-¸ð¹ü´ä¾È : DECODE(A,A,DECODE(C,C,'T','F'),'F')
+ëª¨ë²”ë‹µì•ˆ : DECODE(A,A,DECODE(C,C,'T','F'),'F')
  
